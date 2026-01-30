@@ -1,0 +1,66 @@
+{
+  "expenses": [
+    {
+      "id": "1769747476291",
+      "amount": 30000,
+      "category": "Food",
+      "note": "Ăn cơm",
+      "date": "2026-01-30"
+    },
+    {
+      "id": "1769754170704",
+      "amount": 20000,
+      "category": "Transport",
+      "note": "",
+      "date": "2026-01-29"
+    },
+    {
+      "id": "1769754354083",
+      "amount": 30000,
+      "category": "Health",
+      "note": "",
+      "date": "2026-01-23"
+    },
+    {
+      "id": "1769755236183",
+      "amount": 120000,
+      "category": "Mới",
+      "note": "",
+      "date": "2026-01-30"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Food"
+    },
+    {
+      "id": "2",
+      "name": "Transport"
+    },
+    {
+      "id": "3",
+      "name": "Utilities"
+    },
+    {
+      "id": "4",
+      "name": "Shopping"
+    },
+    {
+      "id": "5",
+      "name": "Entertainment"
+    },
+    {
+      "id": "6",
+      "name": "Health"
+    },
+    {
+      "id": "7",
+      "name": "Other"
+    },
+    {
+      "id": "9b9c",
+      "name": "Mới"
+    }
+  ]
+}

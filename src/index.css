@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* MD3 Color Tokens - Indigo Theme */
+  --md-sys-color-primary: #4F378B;
+  /* M3 Primary */
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: #EADDFF;
+  --md-sys-color-on-primary-container: #21005D;
+
+  --md-sys-color-secondary: #625B71;
+  --md-sys-color-on-secondary: #FFFFFF;
+  --md-sys-color-secondary-container: #E8DEF8;
+  --md-sys-color-on-secondary-container: #1D192B;
+
+  --md-sys-color-tertiary: #7D5260;
+  --md-sys-color-tertiary-container: #FFD8E4;
+  --md-sys-color-on-tertiary-container: #31111D;
+
+  --md-sys-color-error: #B3261E;
+  --md-sys-color-on-error: #FFFFFF;
+
+  --md-sys-color-background: #FFFBFE;
+  --md-sys-color-on-background: #1C1B1F;
+  --md-sys-color-surface: #FFFBFE;
+  --md-sys-color-surface-container: #F3F3FA;
+  /* Slightly distinct for cards */
+  --md-sys-color-on-surface: #1C1B1F;
+  --md-sys-color-on-surface-variant: #49454F;
+  --md-sys-color-outline: #79747E;
+
+  --md-ref-typeface-brand: 'Inter', sans-serif;
+  --md-sys-shape-corner-extra-large: 28px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-full: 9999px;
+  /* Pill shape */
+
+  --md-sys-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
+  --md-sys-elevation-2: 0 2px 6px 2px rgba(0, 0, 0, 0.10), 0 1px 2px 0 rgba(0, 0, 0, 0.20);
+  --md-sys-elevation-3: 0 4px 8px 3px rgba(0, 0, 0, 0.10), 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--md-ref-typeface-brand);
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Layout */
+.container {
+  max-width: 600px;
+  /* Narrower for mobile-first feel */
+  margin: 0 auto;
+  padding-bottom: 80px;
+  /* Space for FAB or bottom content */
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface);
+}
+
+h1 {
+  font-size: 2.25rem;
+  /* Display Small */
+  line-height: 2.75rem;
+  letter-spacing: 0;
+}
+
+h3 {
+  font-size: 1.375rem;
+  /* Title Large */
+  line-height: 1.75rem;
+  font-weight: 500;
+}
+
+p {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 1rem;
+  /* Body Large */
+  line-height: 1.5rem;
+  letter-spacing: 0.03rem;
+}
+
+/* Common Components */
+.card {
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: var(--md-sys-shape-corner-large);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  /* MD3 uses tonal variation for surface usually, but we can add subtle shadow */
+  box-shadow: none;
+  /* Flat is trendy, but let's add subtle if needed */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: 500;
+  font-size: 0.95rem;
+  /* Label Large */
+  line-height: 1.25rem;
+  letter-spacing: 0.01rem;
+  border: none;
+  border-radius: var(--md-sys-shape-corner-full);
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.0, 0, 1.0);
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+.btn:hover {
+  background-color: #604A99;
+  /* Slightly lighter/darker depending on preference */
+  box-shadow: var(--md-sys-elevation-2);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  box-shadow: var(--md-sys-elevation-1);
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  background-color: rgba(28, 27, 31, 0.12);
+  color: rgba(28, 27, 31, 0.38);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.label {
+  display: block;
+  font-size: 0.75rem;
+  /* Body Small */
+  color: var(--md-sys-color-primary);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: var(--md-ref-typeface-brand);
+  font-size: 1rem;
+  color: var(--md-sys-color-on-surface);
+  background-color: var(--md-sys-color-surface);
+  /* Or surface-container-highest */
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-small);
+  /* Text fields usually have small radius */
+  transition: all 0.2s ease;
+  appearance: none;
+  /* Remove default styling */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 0 2px var(--md-sys-color-primary-container);
+}
+
+/* List Items */
+.list-item {
+  background-color: var(--md-sys-color-surface);
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.list-item:hover {
+  background-color: #FDFBFF;
+  /* Slightly brighter */
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Scrim */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background-color: var(--md-sys-color-surface-container);
+  /* Should be surface, but let's use container to stand out */
+  padding: 1.5rem;
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  width: 90%;
+  max-width: 500px;
+  box-shadow: var(--md-sys-elevation-3);
+  animation: slideUp 0.3s cubic-bezier(0.2, 0.0, 0, 1.0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Utilities */
+.text-primary {
+  color: var(--md-sys-color-primary);
+}
+
+.text-muted {
+  color: var(--md-sys-color-on-surface-variant);
+}
