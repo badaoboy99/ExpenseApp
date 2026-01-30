@@ -1,76 +1,98 @@
-const API_URL = 'http://localhost:3000/expenses';
+const STORAGE_KEY_EXPENSES = 'expense_app_expenses';
+const STORAGE_KEY_CATEGORIES = 'expense_app_categories';
+
+// Default Categories
+const DEFAULT_CATEGORIES = [
+    { id: '1', name: 'Food' },
+    { id: '2', name: 'Transport' },
+    { id: '3', name: 'Utilities' },
+    { id: '4', name: 'Shopping' },
+    { id: '5', name: 'Entertainment' },
+    { id: '6', name: 'Health' },
+    { id: '7', name: 'Other' },
+];
+
+// Helper to get data
+const getLocalStorage = (key, defaultVal = []) => {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : defaultVal;
+};
+
+// Helper to set data
+const setLocalStorage = (key, data) => {
+    localStorage.setItem(key, JSON.stringify(data));
+};
 
 export const api = {
+    // EXPENSES
     fetchExpenses: async () => {
-        try {
-            const response = await fetch(API_URL);
-            if (!response.ok) throw new Error('Failed to fetch expenses');
-            return await response.json();
-        } catch (error) {
-            console.error('Error fetching expenses:', error);
-            throw error;
-        }
+        // Simulate async delay for realism
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const expenses = getLocalStorage(STORAGE_KEY_EXPENSES);
+                resolve(expenses);
+            }, 300);
+        });
     },
 
     createExpense: async (expense) => {
-        try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(expense),
-            });
-            if (!response.ok) throw new Error('Failed to create expense');
-            return await response.json();
-        } catch (error) {
-            console.error('Error creating expense:', error);
-            throw error;
-        }
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const expenses = getLocalStorage(STORAGE_KEY_EXPENSES);
+                const newExpense = { ...expense, id: Date.now().toString() };
+                expenses.push(newExpense);
+                setLocalStorage(STORAGE_KEY_EXPENSES, expenses);
+                resolve(newExpense);
+            }, 300);
+        });
     },
 
     deleteExpense: async (id) => {
-        try {
-            console.log(`Deleting expense with ID: ${id}`);
-            const response = await fetch(`${API_URL}/${id}`, {
-                method: 'DELETE',
-            });
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(`Failed to delete: ${response.status} ${response.statusText} - ${errorText}`);
-            }
-            return true;
-        } catch (error) {
-            console.error('Error deleting expense:', error);
-            throw error;
-        }
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const expenses = getLocalStorage(STORAGE_KEY_EXPENSES);
+                const filtered = expenses.filter(e => e.id !== id);
+                setLocalStorage(STORAGE_KEY_EXPENSES, filtered);
+                resolve(true);
+            }, 300);
+        });
     },
 
-    // Category APIs
+    // CATEGORIES
     fetchCategories: async () => {
-        try {
-            const response = await fetch('http://localhost:3000/categories');
-            if (!response.ok) throw new Error('Failed to fetch categories');
-            return await response.json();
-        } catch (error) {
-            console.error('Error fetching categories:', error);
-            return []; // Return empty array on error to prevent crash
-        }
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                let categories = getLocalStorage(STORAGE_KEY_CATEGORIES, null);
+                // Initialize defaults if empty
+                if (!categories) {
+                    categories = DEFAULT_CATEGORIES;
+                    setLocalStorage(STORAGE_KEY_CATEGORIES, categories);
+                }
+                resolve(categories);
+            }, 300);
+        });
     },
 
     createCategory: async (name) => {
-        const response = await fetch('http://localhost:3000/categories', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name }),
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const categories = getLocalStorage(STORAGE_KEY_CATEGORIES, DEFAULT_CATEGORIES);
+                const newCategory = { id: Date.now().toString(), name };
+                categories.push(newCategory);
+                setLocalStorage(STORAGE_KEY_CATEGORIES, categories);
+                resolve(newCategory);
+            }, 300);
         });
-        return await response.json();
     },
 
     deleteCategory: async (id) => {
-        await fetch(`http://localhost:3000/categories/${id}`, {
-            method: 'DELETE',
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const categories = getLocalStorage(STORAGE_KEY_CATEGORIES, DEFAULT_CATEGORIES);
+                const filtered = categories.filter(c => c.id !== id);
+                setLocalStorage(STORAGE_KEY_CATEGORIES, filtered);
+                resolve(true);
+            }, 300);
         });
-        return true;
     }
 };
